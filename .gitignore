@@ -1,2 +1,5 @@
-*.FCBak
+# output directories
 build/
+
+# backup files
+*.FCBak
