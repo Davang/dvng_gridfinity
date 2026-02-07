@@ -40,9 +40,9 @@ This simplifies the geometry, reduces printing time and is backwards compatible 
 
 This is a list of 3d models that are neither baseplater nor containers.
 
-| spacer 5x2x4 | lid 3x4 | lid stackable 3x4 |
+| spacer 5x2x3 | lid 3x4 | lid stackable 7x3 |
 | - | - | - |
-| ![](./etc/misc/spacer_5x2x4.png)| ![](./etc/misc/lid_3x4.png) | ![](./etc/misc/lid_stack_3x4.png) |
+| ![](./etc/misc/spacer_5x2x3.png)| ![](./etc/misc/lid_3x4.png) | ![](./etc/misc/lid_stack_7x3.png) |
 
 ---
 
