@@ -11,44 +11,41 @@ All models are parametrizable through the `user_input` variable set.
 Depending on the file there may be different parameters available.
 In most of them there is one for managing the grid and height.
 
-## [Baseplate](./mec/baseplate.FCStd)
+All model are within the [mec](./mec/) directory.
+Baseplate and container each have a base file with the basic designs.
+Each custom design is placed in a different file.
+The miscellaneous directory has gridfinity compatible desgins that re neither baseplates or containers.
 
-| 5x2 no filling corner | 4x3 filling corner |
-| - | - |
-| ![](./etc/baseplate/no_corner_5x2.png) | ![](./etc/baseplate/corner_4x3.png) |
+## [Baseplate](./mec/baseplate/)
 
-In addition to the basic baseplates there are some other custom baseplates, in this case, each design is a unique file.
+| 5x2 no filling corner | 4x3 filling corner | 3x3 single chamfer |
+| - | - | - |
+| ![](./etc/baseplate/no_corner_5x2.png) | ![](./etc/baseplate/corner_4x3.png) | ![](./etc/baseplate/single_chamfer_3x3.png) |
 
-| 3x3 single chamfer | 7x4 tiered | 5x7 slanted | 5x7 clipable | L-shaped |
-| - | - | - | - | - |
-| ![](./etc/baseplate/single_chamfer_baseplate_3x3.png) | ![]( ) | ![]( ) | ![]( ) | ![]( ) |
+| 7x4 tiered | 5x7 slanted | 5x7 clipable |
+| - | - | - |
+| ![]( ) | ![]( ) | ![]( ) |
 
-## [Container](./mec/container.FCStd)
+## [Container](./mec/container/)
 
-| 5x3x3 stackable | 2x2x10 non-stackable |
-| - | - |	
-| ![](./etc/container/basic_container_5x3x3.png) | ![](./etc/container/flat_container_2x2x10.png) |
-
-In addition to the basic container there are some other custom ones, in this case, each design is a unique file.
+| 5x3x3 stackable | 2x2x10 non-stackable | 5x5x4 non-stackable |
+| - | - | - |
+| ![](./etc/container/basic_5x3x3.png) | ![](./etc/container/flat_2x2x10.png) | ![](./etc/container/flat_5x5x4.png) |
 
 | 5x2 slanted base | 4x3 slanted lip | 5x7 clickable |
 | - | - | - |
 | ![]( ) | ![]( ) | ![]( ) |
 
-And purpouse specific containers.
-
-| 4x3 slanted base | 4x3 slanted lip | 5x7 clickable |
+| pencil holders | vernier calliper | SD cards |
 | - | - | - |
 | ![]( ) | ![]( ) | ![]( ) |
 
 
-## [Miscellaneous](./mec/misc.FCStd)
+## [Miscellaneous](./mec/misc/)
 
-This is a list of 3d models that are neither baseplater nor containers.
-
-| spacer 5x2x3 | lid 3x4 | lid stackable 7x3 |
-| - | - | - |
-| ![](./etc/misc/spacer_5x2x3.png) | ![](./etc/misc/lid_3x4.png) | ![](./etc/misc/lid_stack_7x3.png) |
+| spacer 5x2x3 | lid 3x4 | lid stackable 7x3 | L cleat |
+| - | - | - | - |
+| ![](./etc/misc/spacer_5x2x3.png) | ![](./etc/misc/lid_3x4.png) | ![](./etc/misc/lid_stack_7x3.png) | ![]( ) |
 
 ---
 
