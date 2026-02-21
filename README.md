@@ -22,9 +22,9 @@ The miscellaneous directory has gridfinity compatible desgins that re neither ba
 | - | - | - |
 | ![](./etc/baseplate/no_corner_5x2.png) | ![](./etc/baseplate/corner_4x3.png) | ![](./etc/baseplate/single_chamfer_3x3.png) |
 
-| 7x4 tiered | 5x7 slanted | 5x7 clipable |
+| 7x4 tiered | 5x7 slanted | 1x1 clipable |
 | - | - | - |
-| ![]( ) | ![]( ) | ![]( ) |
+| ![](./etc/baseplate/tiered2u_7x4.png) | ![](./etc/baseplate/slanted45_4x8.png) | ![](./etc/baseplate/clipable_1x1.png) |
 
 ## [Container](./mec/container/)
 
@@ -36,9 +36,9 @@ The miscellaneous directory has gridfinity compatible desgins that re neither ba
 | - | - | - |
 | ![]( ) | ![]( ) | ![]( ) |
 
-| pencil holders | vernier calliper | SD cards |
-| - | - | - |
-| ![]( ) | ![]( ) | ![]( ) |
+| vernier calliper | SD cards |
+| - | - |
+| ![]( ) | ![]( ) |
 
 
 ## [Miscellaneous](./mec/misc/)
