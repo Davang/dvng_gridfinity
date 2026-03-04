@@ -42,7 +42,7 @@ If I am doing 3d modeling, I do not want to write code.
 
 | vernier calliper | SD cards | tall pen cup | shallow pen cup |
 | - | - | - | - |
-| ![]( ) | ![]( ) | ![](./etc/container/pen_cup_3x3x18.png) | ![](./etc/container/pen_cup_2x2x5.png) |
+| ![]( ) | ![]( ) | ![](./etc/container/pen_cup_3x3x13.png) | ![](./etc/container/pen_cup_2x2x5.png) |
 
 
 ## [Miscellaneous](./mec/misc/)
