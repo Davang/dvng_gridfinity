@@ -1,5 +1,7 @@
-# output directories
+# output
 build/
+*.step
 
 # backup files
 *.FCBak
+
