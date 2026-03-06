@@ -5,15 +5,58 @@ As it is an open design I belive it shall be possible to use only open tools for
 Check [the gridfinity official especification](https://gridfinity.xyz/specification/) to know more about the design.
 My implementation may not be strictly compliant with it, so be careful integrating it with your own or 3rd party designs, they may not work.
 
-All models are parametrizable through the `user_input` variable set, there shall be one per file.
-Depending on the file there may be different parameters to configure.
+All models are parametrizable through the `user_input` variable set.
+The `parameters` variable sanitzes the `user_input` values
+It defines all design parameters.
+If the the `parameters` variable is changed it may be possible the design is broken.
+Some manual adjustment may be reqruied.
+Not all files have the same parameters.
 One goal of this project is that all models can be easily configured for your own needs.
-I do not achive to have a fully parametrizable project, but one that is flexible enough to adapt up to certain level.
-I use half size as default uint.
-To achive I just divide by two the baseplate unit size and reduce all other measuremets equally.
-This means the container is 20.5 mm in size.
+I do not seek to have a fully parametrizable project.
+But one that is flexible enough to adapt up to certain level.
 
-All model are within the [mec](./mec/) directory, within it, three folders: [baseplate](./mec/baseplate), [container](./mec/container) and [misc](./mec/misc).
+It use half size as default unit.
+The baseplate unit size is divided by two.
+And reduce all other measuremets equally.
+This means the container is 20.5 mm in size.
+The height unit is not affected
+
+| parameter | value |
+| - | - |
+| base plate width | 21 mm |
+| base plate outer radius | 4 mm |
+| container width | 20.5 mm |
+| container outher radius | 3.75 mm |
+| unit height | 7 mm |
+
+All model are within the [mec](./mec/) directory.
+
+* [baseplate](./mec/baseplate)
+	* no filling corner
+	* filled corner
+	* single chamfer
+	* slanted
+	* dual size grid (TBD)
+	* clipable (TBD)
+* [container](./mec/container)
+	* stackable
+	* non stackable
+	* SD and micro-SD holder
+	* clipable (TBD)
+	* slanted (TBD)
+	* slanted lid (TBD)
+	* vernier calliper (TBD)
+	* batteries (TBD)
+	* disks (TBD)
+* [misc](./mec/misc)
+	* spacer
+	* lid
+	* lid stackable
+	* cable holder cliplable (TBD)
+	* phone holder (TBD)
+	* phone charger (TBD)
+	* L cleat clipable (TBD)
+
 Each folder has a base file with the basic designs.
 Each custom design is placed in a different file.
 The miscellaneous directory has gridfinity compatible desgins that are neither baseplates or containers.
@@ -29,9 +72,9 @@ If I am doing 3d modeling, I do not want to write code.
 | - | - | - |
 | ![](./etc/baseplate/no_corner_5x2.png) | ![](./etc/baseplate/corner_4x3.png) | ![](./etc/baseplate/single_chamfer_3x3.png) |
 
-| 7x4 tiered | 5x7 slanted | 1x1 clipable |
-| - | - | - |
-| ![](./etc/baseplate/tiered2u_7x4.png) | ![](./etc/baseplate/slanted45_4x8.png) | ![](./etc/baseplate/clipable_1x1.png) |
+| 5x7 slanted |
+| - |
+| ![](./etc/baseplate/slanted45_4x8.png) |
 
 ## [Container](./mec/container/)
 
@@ -39,13 +82,9 @@ If I am doing 3d modeling, I do not want to write code.
 | - | - | - |
 | ![](./etc/container/basic_5x3x3.png) | ![](./etc/container/flat_2x2x10.png) | ![](./etc/container/flat_5x5x4.png) |
 
-| 5x2 slanted base | 4x3 slanted lip | 5x7 clickable |
+| SD cards | tall pen cup | shallow pen cup |
 | - | - | - |
-| ![]( ) | ![]( ) | ![]( ) |
-
-| vernier calliper | SD cards | tall pen cup | shallow pen cup |
-| - | - | - | - |
-| ![]( ) | ![]( ) | ![](./etc/container/pen_cup_3x3x13.png) | ![](./etc/container/pen_cup_2x2x5.png) |
+| ![]( ) | ![](./etc/container/pen_cup_3x3x13.png) | ![](./etc/container/pen_cup_2x2x5.png) |
 
 
 ## [Miscellaneous](./mec/misc/)
