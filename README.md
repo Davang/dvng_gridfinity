@@ -9,6 +9,9 @@ All models are parametrizable through the `user_input` variable set, there shall
 Depending on the file there may be different parameters to configure.
 One goal of this project is that all models can be easily configured for your own needs.
 I do not achive to have a fully parametrizable project, but one that is flexible enough to adapt up to certain level.
+I use half size as default uint.
+To achive I just divide by two the baseplate unit size and reduce all other measuremets equally.
+This means the container is 20.5 mm in size.
 
 All model are within the [mec](./mec/) directory, within it, three folders: [baseplate](./mec/baseplate), [container](./mec/container) and [misc](./mec/misc).
 Each folder has a base file with the basic designs.
