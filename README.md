@@ -30,6 +30,45 @@ The height unit is not affected
 | unit height | 7 mm |
 
 All model are within the [mec](./mec/) directory.
+Each folder has a base file with the basic designs.
+Each custom design is placed in a different file.
+The miscellaneous directory has gridfinity compatible desgins that are neither baseplates or containers.
+
+I decided to go with [FreeCAD](https://www.freecad.org/index.php) as I like it and it is pretty easy to use if you are familiar with other 3D parametric software.
+Unlike OpenScad or other gridfinity generators the main target of this project is to have 3d models of the designs.
+Although I apprecieate the work of the generators and those projects based on OpenScad, for me they feel like coding.
+If I am doing 3d modeling, I do not want to write code.
+
+## [Baseplate](./mec/baseplate/)
+
+| 5x2 no filling corner | 4x3 filling corner | 3x3 single chamfer |
+| - | - | - |
+| ![](./etc/baseplate/no_corner_5x2.png) | ![](./etc/baseplate/corner_4x3.png) | ![](./etc/baseplate/single_chamfer_3x3.png) |
+
+| 5x7 slanted |
+| - |
+| ![](./etc/baseplate/slanted45_4x8.png) |
+
+## [Container](./mec/container/)
+
+| 5x3x3 stackable | 2x2x10 non-stackable | 5x5x4 non-stackable |
+| - | - | - |
+| ![](./etc/container/basic_5x3x3.png) | ![](./etc/container/flat_2x2x10.png) | ![](./etc/container/flat_5x5x4.png) |
+
+| SD cards | micro SD cards | tall pen cup |
+| - | - | - |
+| ![](./etc/container/sd_v_7.png) ![](./etc/container/sd_h_5.png) | ![](./etc/container/usd_v_8.png) ![](./etc/container/usd_h_8.png) | ![](./etc/container/pen_cup_3x3x13.png) ![](./etc/container/pen_cup_2x2x5.png) |
+
+
+## [Miscellaneous](./mec/misc/)
+
+| spacer 5x2x3 | lid 3x4 | lid stackable 7x3 |
+| - | - | - |
+| ![](./etc/misc/spacer_5x2x3.png) | ![](./etc/misc/lid_3x4.png) | ![](./etc/misc/lid_stack_7x3.png) |
+
+---
+
+## List of models
 
 * [baseplate](./mec/baseplate)
 	* no filling corner
@@ -57,42 +96,6 @@ All model are within the [mec](./mec/) directory.
 	* phone charger (TBD)
 	* L cleat clipable (TBD)
 
-Each folder has a base file with the basic designs.
-Each custom design is placed in a different file.
-The miscellaneous directory has gridfinity compatible desgins that are neither baseplates or containers.
-
-I decided to go with [FreeCAD](https://www.freecad.org/index.php) as I like it and it is pretty easy to use if you are familiar with other 3D parametric software.
-Unlike OpenScad or other gridfinity generators the main target of this project is to have 3d models of the designs.
-Although I apprecieate the work of the generators and those projects based on OpenScad, for me they feel like coding.
-If I am doing 3d modeling, I do not want to write code.
-
-## [Baseplate](./mec/baseplate/)
-
-| 5x2 no filling corner | 4x3 filling corner | 3x3 single chamfer |
-| - | - | - |
-| ![](./etc/baseplate/no_corner_5x2.png) | ![](./etc/baseplate/corner_4x3.png) | ![](./etc/baseplate/single_chamfer_3x3.png) |
-
-| 5x7 slanted |
-| - |
-| ![](./etc/baseplate/slanted45_4x8.png) |
-
-## [Container](./mec/container/)
-
-| 5x3x3 stackable | 2x2x10 non-stackable | 5x5x4 non-stackable |
-| - | - | - |
-| ![](./etc/container/basic_5x3x3.png) | ![](./etc/container/flat_2x2x10.png) | ![](./etc/container/flat_5x5x4.png) |
-
-| SD cards | tall pen cup | shallow pen cup |
-| - | - | - |
-| ![]( ) | ![](./etc/container/pen_cup_3x3x13.png) | ![](./etc/container/pen_cup_2x2x5.png) |
-
-
-## [Miscellaneous](./mec/misc/)
-
-| spacer 5x2x3 | lid 3x4 | lid stackable 7x3 |
-| - | - | - |
-| ![](./etc/misc/spacer_5x2x3.png) | ![](./etc/misc/lid_3x4.png) | ![](./etc/misc/lid_stack_7x3.png) |
-
 ---
 
 ## Bibliography
@@ -101,7 +104,6 @@ If I am doing 3d modeling, I do not want to write code.
 * [Gridfinity Angled baseplates](https://www.printables.com/model/656549-gridfinity-angled-baseplates)
 * [Gridfinity | Tiered Baseplate | Parametric](https://www.printables.com/model/554733-gridfinity-tiered-baseplate-parametric)
 * [Polyonimo](https://en.wikipedia.org/wiki/Polyomino)
-
 ---
 
 Davang -
