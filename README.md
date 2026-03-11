@@ -45,7 +45,7 @@ If I am doing 3d modeling, I do not want to write code.
 | - | - | - |
 | ![](./etc/baseplate/no_corner_5x2.png) | ![](./etc/baseplate/corner_4x3.png) | ![](./etc/baseplate/single_chamfer_3x3.png) |
 
-| 5x7 slanted |
+| 4x8 slanted |
 | - |
 | ![](./etc/baseplate/slanted45_4x8.png) |
 
@@ -77,6 +77,7 @@ If I am doing 3d modeling, I do not want to write code.
 	* slanted
 	* dual size grid (TBD)
 	* clipable (TBD)
+	* sliding (TBD)
 * [container](./mec/container)
 	* stackable
 	* non stackable
@@ -87,6 +88,12 @@ If I am doing 3d modeling, I do not want to write code.
 	* vernier calliper (TBD)
 	* batteries (TBD)
 	* disks (TBD)
+	* multi bin container (TBD)
+	* cutlery (TBD)
+	* cable organizer (TBD)
+	* sliding bin (TBD)
+	* generic desk organizer (TBD)
+	* sliding bin (TBD)
 * [misc](./mec/misc)
 	* spacer
 	* lid
@@ -95,6 +102,7 @@ If I am doing 3d modeling, I do not want to write code.
 	* phone holder (TBD)
 	* phone charger (TBD)
 	* L cleat clipable (TBD)
+	* ruler (TBD)
 
 ---
 
@@ -104,6 +112,16 @@ If I am doing 3d modeling, I do not want to write code.
 * [Gridfinity Angled baseplates](https://www.printables.com/model/656549-gridfinity-angled-baseplates)
 * [Gridfinity | Tiered Baseplate | Parametric](https://www.printables.com/model/554733-gridfinity-tiered-baseplate-parametric)
 * [Polyonimo](https://en.wikipedia.org/wiki/Polyomino)
+* [Gridfinity 2x1 Phone Stand](https://www.printables.com/model/468962-gridfinity-2x1-phone-stand)
+* [Gridfinity Cable Organizing Boxes](https://makerworld.com/en/models/510993-gridfinity-cable-organizing-boxes?from=search#profileId-934624)
+* [Gridfinity - Battery Holders](https://makerworld.com/en/models/552824-gridfinity-battery-holders?from=search#profileId-471382)
+* [Gridfinity Desk Organizer System - Deskfinity](https://makerworld.com/en/models/826392-gridfinity-desk-organizer-system-deskfinity?from=search#profileId-780724)
+* [Sliding Gridfinity baseplate](https://www.printables.com/model/1433851-sliding-gridfinity-baseplate)
+* [Gridfinity Kitchen Drawer (Parametric)](https://makerworld.com/en/models/883766-gridfinity-kitchen-drawer-parametric?from=search#profileId-838429)
+* [Gridfinity Sliding Lid Bin with Click Notch](https://www.printables.com/model/1041699-gridfinity-sliding-lid-bin-with-click-notch)
+* [Gridfinity Ruler MKII [7 Unit Length]](https://makerworld.com/en/models/856330-gridfinity-ruler-mkii-7-unit-length?from=search#profileId-805694)
+* [Gridfinity Height Ruler - Slim Edition](https://makerworld.com/en/models/208796-gridfinity-height-ruler-slim-edition?from=search#profileId-228778)
+
 ---
 
 Davang -
