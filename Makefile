@@ -1,0 +1,29 @@
+SRC_DIR = ${CURDIR}/src
+MEC_DIR = ${CURDIR}/mec
+BUILD_DIR ?= ${CURDIR}/build
+
+MODULES_LIST_PATH = ${BUILD_DIR}/freecad_modules
+
+DVNG_GRIDFINITY_SRC = ${SRC_DIR}/dvng_gridfinity.py
+FREECAD_MODULE_DUMPER_SRC = ${SRC_DIR}/freecad_module_dumper.py
+
+FREECAD_BIN ?= FreeCAD
+FREECAD_ARGS ?= -c
+
+PYTHON_BIN ?= python
+
+
+
+default: ${BUILD_DIR} ${MODULES_LIST_PATH}
+	${PYTHON_BIN} ${DVNG_GRIDFINITY_SRC} -b ${BUILD_DIR} -m ${MODULES_LIST_PATH} -d ${MEC_DIR}
+
+clean:
+	rm -rf ${BUILD_DIR}
+
+${BUILD_DIR}:
+	mkdir -p $@
+
+.SILENT:
+.SECONDEXPANSION:
+${MODULES_LIST_PATH}: $${@D}
+	-${FREECAD_BIN} ${FREECAD_ARGS} ${FREECAD_MODULE_DUMPER_SRC} ${MODULES_LIST_PATH}
