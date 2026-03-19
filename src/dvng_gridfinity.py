@@ -25,6 +25,7 @@ def parse_args():
     parser.add_argument("-d", "--mec-dir")
     return vars(parser.parse_args())
 
+
 def list_dir(t_path):
     content_list = []
     for ele in os.listdir(t_path):
@@ -36,16 +37,19 @@ def list_dir(t_path):
             pass
     return content_list
 
+
 def is_int(s):
-    try: 
+    try:
         int(s)
     except ValueError:
         return False
     else:
         return True
 
-def clear_line_till_end( t_stdscr, t_x, t_y, t_len):
-    t_stdscr.addstr( t_x, t_y, (" " * t_len)[0:t_len] )
+
+def clear_line_till_end(t_stdscr, t_x, t_y, t_len):
+    t_stdscr.addstr(t_x, t_y, (" " * t_len)[0:t_len])
+
 
 def draw_background(t_stdscr, t_color, t_title):
     t_stdscr.clear()
@@ -54,10 +58,10 @@ def draw_background(t_stdscr, t_color, t_title):
     t_stdscr.addstr(1, 2, t_title, t_color | curses.A_BOLD | curses.A_UNDERLINE)
 
 
-def ask_from_list(t_stdscr, t_color, t_list ):
+def ask_from_list(t_stdscr, t_color, t_list):
     t_list.insert(CANCEL, "cancel")
     position = 0
-    selection = -1    
+    selection = -1
     while selection == -1:
         for i, ele in enumerate(t_list):
             color = t_color if not i == position else t_color | curses.A_REVERSE
@@ -76,102 +80,102 @@ def ask_from_list(t_stdscr, t_color, t_list ):
 
     return selection
 
-def edit_line(t_stdscr, t_color, t_position, t_index, t_name, t_val ):
+
+def edit_line_integer(t_stdscr, t_color, t_position, t_index, t_name, t_val):
     fixed_text = f"{t_index}. {t_name} = "
-    t_stdscr.addstr(t_position, 2, fixed_text, t_color )
-    
+    t_stdscr.addstr(t_position, 2, fixed_text, t_color)
+
     curses.echo()
     user_input = ""
-    while not is_int( user_input ):
-        clear_line_till_end( t_stdscr, t_position, 2 + len(fixed_text), len(user_input))
-        t_stdscr.move( t_position, 2 + len(fixed_text) )
-        user_input = t_stdscr.getstr( )
-        
-    curses.noecho()
-    t_stdscr.addstr( t_position, 2 + len(fixed_text), user_input )
-    t_stdscr.getch()
-    return user_input
+    while not is_int(user_input):
+        clear_line_till_end(t_stdscr, t_position, 2 + len(fixed_text), len(user_input))
+        user_input = t_stdscr.getstr()
 
-def draw_obj_menu( t_stdscr , t_color, t_out_dir, t_cad_file, t_var_set, t_file_name, t_label ):
-    def not_label( t_ele ):
+    curses.noecho()
+    return str(user_input, 'ASCII')
+
+
+def draw_obj_menu(t_stdscr, t_color, t_out_dir, t_cad_file, t_var_set, t_file_name, t_label):
+    def not_label(t_ele):
         return "Label" not in t_ele
-    
-    def not_hidden( t_var_set, t_ele ):
+
+    def not_hidden(t_var_set, t_ele):
         return "Hidden" not in t_var_set.getPropertyStatus(t_ele) and "Hidden" not in t_var_set.getTypeOfProperty(t_ele)
 
     var_label = "holder"
-    
-    while var_label:
-        draw_background( t_stdscr , t_color, f"{t_file_name[:-len(EXTENSTION)]}::{t_label}")
-        
-        text_list = []
-        var_labels = [ f"{i}" for i in t_var_set.PropertiesList if not_label(i) and not_hidden(t_var_set, i ) ]
-        var_values = [ f"{t_var_set.getPropertyByName(i)}" for i in var_labels ]
-        
-        var_labels.append( "generate stl file" )
-        var_values.append( "" )
 
-        for (ele,val) in zip(var_labels, var_values):
+    while var_label:
+        draw_background(t_stdscr, t_color, f"{t_file_name[: -len(EXTENSTION)]}::{t_label}")
+
+        text_list = []
+        var_labels = [f"{i}" for i in t_var_set.PropertiesList if not_label(i) and not_hidden(t_var_set, i)]
+        var_values = [f"{t_var_set.getPropertyByName(i)}" for i in var_labels]
+
+        var_labels.append("generate stl file")
+        var_values.append("")
+
+        for ele, val in zip(var_labels, var_values):
             if val:
-                text_list.append( f"{ele} = {val}" )
+                text_list.append(f"{ele} = {val}")  
             else:
-                text_list.append( f"{ele}" )
-    
-        user_input = ask_from_list( t_stdscr, t_color, text_list )
+                text_list.append(f"{ele}")
+
+        user_input = ask_from_list(t_stdscr, t_color, text_list)
         
         if CANCEL == user_input:
             var_label = None
-        elif user_input == len(var_labels)-1:
-            pass
+        elif user_input == len(var_labels):
+            doc.recompute()
+            t_stdscr.addstr(25, 2, f"{var_labels[var_index]}::{type(new_value)}", t_color)
+            t_stdscr.getch()
             # handle generation
         else:
-            #handle modification
-            var_values[user_input] = edit_line(t_stdscr, t_color, user_input + 2, user_input, var_labels[user_input], var_values[user_input])
+            var_index = user_input - 1
+            new_value = edit_line_integer(t_stdscr, t_color, user_input + 2, user_input, var_labels[var_index], var_values[var_index])
+            exec( f"t_var_set.{var_labels[var_index]} = {new_value}")
 
-
-def draw_file_menu( t_stdscr , t_color, t_error_color, t_file_name, t_out_dir ):
+def draw_file_menu(t_stdscr, t_color, t_error_color, t_file_name, t_out_dir):
     cad_file = FreeCAD.open(t_file_name)
-    title = t_file_name[:-len(EXTENSTION)]
+    title = t_file_name[: -len(EXTENSTION)]
     var_set = cad_file.getObjectsByLabel("user_input")[0]
     if var_set:
         obj_label = "holder"
         while obj_label:
-            draw_background( t_stdscr , t_color, title )
-            obj_labels = [ obj.Label for obj in cad_file.RootObjects ]
-            
-            user_input = ask_from_list( t_stdscr, t_color, obj_labels )
-            
+            draw_background(t_stdscr, t_color, title)
+            obj_labels = [obj.Label for obj in cad_file.RootObjects]
+
+            user_input = ask_from_list(t_stdscr, t_color, obj_labels)
+
             if CANCEL == user_input:
                 obj_label = None
             else:
-                obj_label = obj_labels[ user_input ]
+                obj_label = obj_labels[user_input]
                 draw_obj_menu( t_stdscr, t_color, t_out_dir, cad_file, var_set, t_file_name, obj_label )
     else:
-        draw_background(t_stdscr , t_error_color | curses.A_REVERSE )
-        t_stdscr.addstr(1, 2, f"ERROR, {t_file_name} has no varSet labeled user_input, press any key to return", t_error_color | curses.A_BOLD )
+        draw_background(t_stdscr, t_error_color | curses.A_REVERSE)
+        t_stdscr.addstr(1, 2, f"ERROR, {t_file_name} has no varSet labeled user_input, press any key to return", t_error_color | curses.A_BOLD)
         t_stdscr.getch()
 
     FreeCAD.closeDocument(cad_file.Name)
 
-    return os.path.dirname( t_file_name )  + "/"
+    return os.path.dirname(t_file_name) + "/"
 
 
-
-def draw_folder_menu( t_stdscr , t_color, t_dir, t_base_dir ):
+def draw_folder_menu(t_stdscr, t_color, t_dir, t_base_dir):
     dir_list = list_dir(t_dir)
-    
-    draw_background(t_stdscr, t_color, t_dir )
-    
-    user_input = ask_from_list(stdscr, curses.color_pair(1), dir_list )
-    
+
+    draw_background(t_stdscr, t_color, t_dir)
+
+    user_input = ask_from_list(stdscr, curses.color_pair(1), dir_list)
+
     target = None
     if CANCEL == user_input:
         if t_dir != t_base_dir:
             target = "../"
     else:
         target = os.path.join(t_dir, dir_list[user_input])
-    
-    return target            
+
+    return target
 
 
 if __name__ == "__main__":
@@ -200,15 +204,14 @@ if __name__ == "__main__":
 
     os.chdir(mec_dir)
     user_input = -1
-    
-    target = draw_folder_menu( stdscr, curses.color_pair(1), os.getcwd(), mec_dir)
+
+    target = draw_folder_menu(stdscr, curses.color_pair(1), os.getcwd(), mec_dir)
     while target:
-        
         if target.endswith("/"):
             os.chdir(target)
-            target = draw_folder_menu( stdscr, curses.color_pair(1), os.getcwd(), mec_dir)
+            target = draw_folder_menu(stdscr, curses.color_pair(1), os.getcwd(), mec_dir)
         else:
-            target = draw_file_menu( stdscr, curses.color_pair(1), curses.color_pair(2), target, out_dir )
+            target = draw_file_menu(stdscr, curses.color_pair(1), curses.color_pair(2), target, out_dir)
 
     curses.nocbreak()
     win.keypad(False)
