@@ -126,9 +126,8 @@ def draw_obj_menu(t_stdscr, t_color, t_out_dir, t_cad_file, t_var_set, t_file_na
             var_label = None
         elif user_input == len(var_labels):
             doc.recompute()
-            t_stdscr.addstr(25, 2, f"{var_labels[var_index]}::{type(new_value)}", t_color)
             t_stdscr.getch()
-            # handle generation
+            # pending generation
         else:
             var_index = user_input - 1
             new_value = edit_line_integer(t_stdscr, t_color, user_input + 2, user_input, var_labels[var_index], var_values[var_index])
