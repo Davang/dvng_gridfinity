@@ -25,6 +25,27 @@ def parse_args():
     parser.add_argument("-d", "--mec-dir")
     return vars(parser.parse_args())
 
+def list_dir(t_path):
+    content_list = []
+    for ele in os.listdir(t_path):
+        if os.path.isdir(os.path.join(t_path, ele)):
+            content_list.append(ele + "/")
+        elif EXTENSTION in ele:
+            content_list.append(ele)
+        else:
+            pass
+    return content_list
+
+def is_int(s):
+    try: 
+        int(s)
+    except ValueError:
+        return False
+    else:
+        return True
+
+def clear_line_till_end( t_stdscr, t_x, t_y, t_len):
+    t_stdscr.addstr( t_x, t_y, (" " * t_len)[0:t_len] )
 
 def draw_background(t_stdscr, t_color, t_title):
     t_stdscr.clear()
@@ -33,9 +54,9 @@ def draw_background(t_stdscr, t_color, t_title):
     t_stdscr.addstr(1, 2, t_title, t_color | curses.A_BOLD | curses.A_UNDERLINE)
 
 
-def ask_from_list(t_stdscr, t_color, t_list, t_position = 0):
+def ask_from_list(t_stdscr, t_color, t_list ):
     t_list.insert(CANCEL, "cancel")
-    position = t_position
+    position = 0
     selection = -1    
     while selection == -1:
         for i, ele in enumerate(t_list):
@@ -53,29 +74,23 @@ def ask_from_list(t_stdscr, t_color, t_list, t_position = 0):
         else:
             pass
 
-    return selection, position
+    return selection
 
-
-def list_dir(t_path):
-    content_list = []
-    for ele in os.listdir(t_path):
-        if os.path.isdir(os.path.join(t_path, ele)):
-            content_list.append(ele + "/")
-        elif EXTENSTION in ele:
-            content_list.append(ele)
-        else:
-            pass
-
-    return content_list
-
-# ele name Label in
-# get value {t_var_set.getPropertyByName(ele)}
-# hidden or not {t_var_set.getPropertyStatus(ele)}
-# property type {t_var_set.getTypeOfProperty(ele)}
-
-
-def draw_export_menu( t_stdscr , t_color, t_out_dir, t_cad_file, t_var_set, t_file_name, t_label ):
-    pass
+def edit_line(t_stdscr, t_color, t_position, t_index, t_name, t_val ):
+    fixed_text = f"{t_index}. {t_name} = "
+    t_stdscr.addstr(t_position, 2, fixed_text, t_color )
+    
+    curses.echo()
+    user_input = ""
+    while not is_int( user_input ):
+        clear_line_till_end( t_stdscr, t_position, 2 + len(fixed_text), len(user_input))
+        t_stdscr.move( t_position, 2 + len(fixed_text) )
+        user_input = t_stdscr.getstr( )
+        
+    curses.noecho()
+    t_stdscr.addstr( t_position, 2 + len(fixed_text), user_input )
+    t_stdscr.getch()
+    return user_input
 
 def draw_obj_menu( t_stdscr , t_color, t_out_dir, t_cad_file, t_var_set, t_file_name, t_label ):
     def not_label( t_ele ):
@@ -85,24 +100,33 @@ def draw_obj_menu( t_stdscr , t_color, t_out_dir, t_cad_file, t_var_set, t_file_
         return "Hidden" not in t_var_set.getPropertyStatus(t_ele) and "Hidden" not in t_var_set.getTypeOfProperty(t_ele)
 
     var_label = "holder"
-    last_postion = 0
+    
     while var_label:
         draw_background( t_stdscr , t_color, f"{t_file_name[:-len(EXTENSTION)]}::{t_label}")
-        var_labels = [ i for i in t_var_set.PropertiesList if not_label(i) and not_hidden(t_var_set, i ) ]
+        
+        text_list = []
+        var_labels = [ f"{i}" for i in t_var_set.PropertiesList if not_label(i) and not_hidden(t_var_set, i ) ]
+        var_values = [ f"{t_var_set.getPropertyByName(i)}" for i in var_labels ]
+        
         var_labels.append( "generate stl file" )
+        var_values.append( "" )
 
-        user_input, last_postion = ask_from_list( t_stdscr, t_color, var_labels, last_postion)
+        for (ele,val) in zip(var_labels, var_values):
+            if val:
+                text_list.append( f"{ele} = {val}" )
+            else:
+                text_list.append( f"{ele}" )
+    
+        user_input = ask_from_list( t_stdscr, t_color, text_list )
         
         if CANCEL == user_input:
             var_label = None
         elif user_input == len(var_labels)-1:
-            t_stdscr.addstr(10, 2, f"handle stl generation", t_color)
-            t_stdscr.getch()
             pass
+            # handle generation
         else:
-            t_stdscr.addstr(12, 2, f"handle modification", t_color)
-            t_stdscr.getch()
-            pass
+            #handle modification
+            var_values[user_input] = edit_line(t_stdscr, t_color, user_input + 2, user_input, var_labels[user_input], var_values[user_input])
 
 
 def draw_file_menu( t_stdscr , t_color, t_error_color, t_file_name, t_out_dir ):
@@ -115,7 +139,8 @@ def draw_file_menu( t_stdscr , t_color, t_error_color, t_file_name, t_out_dir ):
             draw_background( t_stdscr , t_color, title )
             obj_labels = [ obj.Label for obj in cad_file.RootObjects ]
             
-            user_input,_ = ask_from_list( t_stdscr, t_color, obj_labels )
+            user_input = ask_from_list( t_stdscr, t_color, obj_labels )
+            
             if CANCEL == user_input:
                 obj_label = None
             else:
@@ -137,7 +162,7 @@ def draw_folder_menu( t_stdscr , t_color, t_dir, t_base_dir ):
     
     draw_background(t_stdscr, t_color, t_dir )
     
-    user_input,_ = ask_from_list(stdscr, curses.color_pair(1), dir_list )
+    user_input = ask_from_list(stdscr, curses.color_pair(1), dir_list )
     
     target = None
     if CANCEL == user_input:
