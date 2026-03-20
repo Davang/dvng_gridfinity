@@ -92,7 +92,7 @@ def edit_line_integer(t_stdscr, t_color, t_position, t_index, t_name, t_val):
         user_input = t_stdscr.getstr()
 
     curses.noecho()
-    return str(user_input, 'ASCII')
+    return str(user_input, "ASCII")
 
 
 def draw_obj_menu(t_stdscr, t_color, t_out_dir, t_cad_file, t_obj_label, t_var_set):
@@ -102,10 +102,10 @@ def draw_obj_menu(t_stdscr, t_color, t_out_dir, t_cad_file, t_obj_label, t_var_s
     def not_hidden(t_var_set, t_ele):
         return "Hidden" not in t_var_set.getPropertyStatus(t_ele) and "Hidden" not in t_var_set.getTypeOfProperty(t_ele)
 
-    def generate_name(t_out_dir, t_label, t_values, t_extension = ".step"):
+    def generate_name(t_out_dir, t_label, t_values, t_extension=".step"):
         values_str = ""
         for i, val in enumerate(t_values):
-                values_str += "_" + str(val)
+            values_str += "_" + str(val)
 
         return os.path.join(t_out_dir, t_label + values_str + t_extension)
 
@@ -114,7 +114,7 @@ def draw_obj_menu(t_stdscr, t_color, t_out_dir, t_cad_file, t_obj_label, t_var_s
     while var_label:
         draw_background(t_stdscr, t_color, f"{t_cad_file.FileName[: -len(EXTENSTION)]}::{t_obj_label}")
 
-        text_list = [ ]
+        text_list = []
         var_labels = [f"{i}" for i in t_var_set.PropertiesList if not_label(i) and not_hidden(t_var_set, i)]
         var_values = [f"{t_var_set.getPropertyByName(i)}" for i in var_labels]
         var_labels.append("generate stl file")
@@ -122,22 +122,22 @@ def draw_obj_menu(t_stdscr, t_color, t_out_dir, t_cad_file, t_obj_label, t_var_s
 
         for ele, val in zip(var_labels, var_values):
             if val:
-                text_list.append(f"{ele} = {val}")  
+                text_list.append(f"{ele} = {val}")
             else:
                 text_list.append(f"{ele}")
 
         user_input = ask_from_list(t_stdscr, t_color, text_list)
-        
+
         if CANCEL == user_input:
             var_label = None
-        elif user_input == len(var_labels):            
+        elif user_input == len(var_labels):
             t_cad_file.recompute()
-                        
+
             labels = [f"{i}" for i in t_var_set.PropertiesList if not_label(i) and not_hidden(t_var_set, i)]
             obj = t_cad_file.getObjectsByLabel(t_obj_label)[0]
-            
-            file_name = generate_name( t_out_dir, obj.Label, [f"{t_var_set.getPropertyByName(i)}" for i in labels] )
-            obj.Shape.exportStep( file_name )
+
+            file_name = generate_name(t_out_dir, obj.Label, [f"{t_var_set.getPropertyByName(i)}" for i in labels])
+            obj.Shape.exportStep(file_name)
 
             t_stdscr.addstr(20, 2, f"export done {file_name}, press any key to continue", t_color | curses.A_BOLD | curses.A_REVERSE)
             t_stdscr.getch()
@@ -146,7 +146,8 @@ def draw_obj_menu(t_stdscr, t_color, t_out_dir, t_cad_file, t_obj_label, t_var_s
         else:
             var_index = user_input - 1
             new_value = edit_line_integer(t_stdscr, t_color, user_input + 2, user_input, var_labels[var_index], var_values[var_index])
-            exec( f"t_var_set.{var_labels[var_index]} = {new_value}")
+            exec(f"t_var_set.{var_labels[var_index]} = {new_value}")
+
 
 def draw_file_menu(t_stdscr, t_color, t_error_color, t_file_name, t_out_dir):
     cad_file = FreeCAD.open(t_file_name)
@@ -163,7 +164,7 @@ def draw_file_menu(t_stdscr, t_color, t_error_color, t_file_name, t_out_dir):
                 obj_label = None
             else:
                 obj_label = obj_labels[user_input]
-                draw_obj_menu( t_stdscr, t_color, t_out_dir, cad_file, obj_label, var_set )
+                draw_obj_menu(t_stdscr, t_color, t_out_dir, cad_file, obj_label, var_set)
     else:
         draw_background(t_stdscr, t_error_color | curses.A_REVERSE)
         t_stdscr.addstr(1, 2, f"ERROR, {t_file_name} has no varSet labeled user_input, press any key to return", t_error_color | curses.A_BOLD)
