@@ -2,23 +2,24 @@
 
 Based on [Gridfinity | The modular, open-source grid storage system](https://www.youtube.com/watch?v=ra_9zU-mnl8), by [Zack Freedman's](https://www.youtube.com/@ZackFreedman).
 As it is an open design I belive it shall be possible to use only open tools for its development.
-Check [the gridfinity official especification](https://gridfinity.xyz/specification/) to know more about the design.
-My implementation may not be strictly compliant with it, so be careful integrating it with your own or 3rd party designs, they may not work.
+Read [the gridfinity official especification](https://gridfinity.xyz/specification/) to know more about the design.
+My implementation is not strictly compliant with it as it uses 21 mm as standard width instead of 42 mm.
+But my designs shall be compatible with the original standard
 
 All models are parametrizable through the `user_input` variable set.
-The `parameters` variable sanitzes the `user_input` values
-It defines all design parameters.
-If the the `parameters` variable is changed it may be possible the design is broken.
+The `parameters` variable set sanitzes the `user_input` values and defines all design parameters.
+If a variable in the `parameters` set is changed it may be possible the design is broken.
 Some manual adjustment may be reqruied.
-Not all files have the same parameters.
+Not all files have the same variables to configure.
+
 One goal of this project is that all models can be easily configured for your own needs.
 I do not seek to have a fully parametrizable project.
 But one that is flexible enough to adapt up to certain level.
 
-It use half size as default unit.
-The baseplate unit size is divided by two.
-And reduce all other measuremets equally.
-This means the container is 20.5 mm in size.
+This project uses half size as default unit.
+The baseplate unit size is divided by two, 21 mm.
+And all other measuremets are reduced equally.
+This means the container is 20.5 mm width.
 The height unit is not affected
 
 | parameter | value |
@@ -29,80 +30,48 @@ The height unit is not affected
 | container outher radius | 3.75 mm |
 | unit height | 7 mm |
 
-All model are within the [mec](./mec/) directory.
-Each folder has a base file with the basic designs.
-Each custom design is placed in a different file.
-The miscellaneous directory has gridfinity compatible desgins that are neither baseplates or containers.
+All models are within the [mec](./mec/) directory.
+The [src](./src/) has a python script that launches a ncurses GUI con easily configure and generate .STEP files of each model.
+run `make` to run the script automatically.
 
 I decided to go with [FreeCAD](https://www.freecad.org/index.php) as I like it and it is pretty easy to use if you are familiar with other 3D parametric software.
 Unlike OpenScad or other gridfinity generators the main target of this project is to have 3d models of the designs.
 Although I apprecieate the work of the generators and those projects based on OpenScad, for me they feel like coding.
 If I am doing 3d modeling, I do not want to write code.
 
-## [Baseplate](./mec/baseplate/)
-
+## [Baseplate](./etc/baseplate/README.md)
+| | | |
+| - | - | - |
 | 5x2 no filling corner | 4x3 filling corner | 3x3 single chamfer |
-| - | - | - |
 | ![](./etc/baseplate/no_corner_5x2.png) | ![](./etc/baseplate/corner_4x3.png) | ![](./etc/baseplate/single_chamfer_3x3.png) |
+| 4x8 slanted | dual size grid | clipable |
+| ![](./etc/baseplate/slanted45_4x8.png) | TBD | TBD |
+| sliding | TBD | TBD |
 
-| 4x8 slanted |
-| - |
-| ![](./etc/baseplate/slanted45_4x8.png) |
+## [Container](./etc/container/README.md)
 
-## [Container](./mec/container/)
-
+| | | |
+| - | - | - |
 | 5x3x3 stackable | 2x2x10 non-stackable | 5x5x4 non-stackable |
-| - | - | - |
 | ![](./etc/container/basic_5x3x3.png) | ![](./etc/container/flat_2x2x10.png) | ![](./etc/container/flat_5x5x4.png) |
-
 | SD cards | micro SD cards | tall pen cup |
-| - | - | - |
-| ![](./etc/container/sd_v_7.png) ![](./etc/container/sd_h_5.png) | ![](./etc/container/usd_v_8.png) ![](./etc/container/usd_h_8.png) | ![](./etc/container/pen_cup_3x3x13.png) ![](./etc/container/pen_cup_2x2x5.png) |
+| vertical mount ![](./etc/container/sd_v_7.png) horizontal mount  ![](./etc/container/sd_h_5.png) | vertical mount  ![](./etc/container/usd_v_8.png) horizontal mount  ![](./etc/container/usd_h_8.png) | ![](./etc/container/pen_cup_3x3x13.png) ![](./etc/container/pen_cup_2x2x5.png) |
+| clipable | slanted bin and lid | geomtric shapes |
+| geometrics shapes 0 | geometrics shapes 1 | SDD/HDD |
+| circle ![](./etc/container/circle_5.png) ellipse ![](./etc/container/oval_8_4.png) | pentagon ![](./etc/container/pentagon_3.png) heptagon ![](./etc/container/heptagon_3.png) |  |
+| SDD/HDD | multibin | batteries |
+| cutlery | cable organizer | sliding bin |
+| vernier calliper | cable organizer | sliding bin |
 
 
-## [Miscellaneous](./mec/misc/)
+## [Miscellaneous](./etc/misc/README.md)
 
+| | | |
+| - | - | - |	
 | spacer 5x2x3 | lid 3x4 | lid stackable 7x3 |
-| - | - | - |
 | ![](./etc/misc/spacer_5x2x3.png) | ![](./etc/misc/lid_3x4.png) | ![](./etc/misc/lid_stack_7x3.png) |
-
----
-
-## List of models
-
-* [baseplate](./mec/baseplate)
-	* no filling corner
-	* filled corner
-	* single chamfer
-	* slanted
-	* dual size grid (TBD)
-	* clipable (TBD)
-	* sliding (TBD)
-* [container](./mec/container)
-	* stackable
-	* non stackable
-	* SD and micro-SD holder
-	* clipable (TBD)
-	* slanted (TBD)
-	* slanted lid (TBD)
-	* vernier calliper (TBD)
-	* batteries (TBD)
-	* disks (TBD)
-	* multi bin container (TBD)
-	* cutlery (TBD)
-	* cable organizer (TBD)
-	* sliding bin (TBD)
-	* generic desk organizer (TBD)
-	* sliding bin (TBD)
-* [misc](./mec/misc)
-	* spacer
-	* lid
-	* lid stackable
-	* cable holder cliplable (TBD)
-	* phone holder (TBD)
-	* phone charger (TBD)
-	* L cleat clipable (TBD)
-	* ruler (TBD)
+| cable canal | phone holder/charger | cleat |
+| gridfinity ruler | TBD | TBD |
 
 ---
 
