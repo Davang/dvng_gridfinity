@@ -57,8 +57,8 @@ If I am doing 3d modeling, I do not want to write code.
 | SD cards | micro SD cards | tall pen cup |
 | vertical mount ![](./etc/container/sd_v_7.png) horizontal mount  ![](./etc/container/sd_h_5.png) | vertical mount  ![](./etc/container/usd_v_8.png) horizontal mount  ![](./etc/container/usd_h_8.png) | ![](./etc/container/pen_cup_3x3x13.png) ![](./etc/container/pen_cup_2x2x5.png) |
 | clipable | slanted bin and lid | geomtric shapes |
-| geometrics shapes 0 | geometrics shapes 1 | geometrics shapes 2 |
-| ![](./etc/container/circle_5.png) ![](./etc/container/oval_8_4.png) | regular triangle heptagon | rectangle rhombus |
+| geometrics shapes 0 | geometrics shapes 1 | SDD/HDD |
+| circle ![](./etc/container/circle_5.png) ellipse ![](./etc/container/oval_8_4.png) | pentagon ![](./etc/container/pentagon_3.png) heptagon ![](./etc/container/heptagon_3.png) |  |
 | SDD/HDD | multibin | batteries |
 | cutlery | cable organizer | sliding bin |
 | vernier calliper | cable organizer | sliding bin |
