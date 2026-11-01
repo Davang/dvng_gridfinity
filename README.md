@@ -42,9 +42,9 @@ If I am doing 3d modeling, I do not want to write code.
 ## [Baseplate](./etc/baseplate/README.md)
 | | | |
 | - | - | - |
-| 5x2 no filling corner | 4x3 filling corner | 3x3 single chamfer |
+| no filling corner | filling corner | single chamfer |
 | ![](./etc/baseplate/no_corner_5x2.png) | ![](./etc/baseplate/corner_4x3.png) | ![](./etc/baseplate/single_chamfer_3x3.png) |
-| 4x8 slanted | dual size grid | clipable |
+| slanted | dual size grid | clipable |
 | ![](./etc/baseplate/slanted45_4x8.png) | TBD | TBD |
 | sliding | TBD | TBD |
 
@@ -52,15 +52,14 @@ If I am doing 3d modeling, I do not want to write code.
 
 | | | |
 | - | - | - |
-| 5x3x3 stackable | 2x2x10 non-stackable | 5x5x4 non-stackable |
+| stackable | non-stackable | non-stackable |
 | ![](./etc/container/basic_5x3x3.png) | ![](./etc/container/flat_2x2x10.png) | ![](./etc/container/flat_5x5x4.png) |
-| SD cards | micro SD cards | tall pen cup |
+| SD cards | micro SD cards | pen cup |
 | vertical mount ![](./etc/container/sd_v_7.png) horizontal mount  ![](./etc/container/sd_h_5.png) | vertical mount  ![](./etc/container/usd_v_8.png) horizontal mount  ![](./etc/container/usd_h_8.png) | ![](./etc/container/pen_cup_3x3x13.png) ![](./etc/container/pen_cup_2x2x5.png) |
 | clipable | slanted bin and lid | geomtric shapes |
 | geometrics shapes 0 | geometrics shapes 1 | SDD/HDD |
-| circle ![](./etc/container/circle_5.png) ellipse ![](./etc/container/oval_8_4.png) | pentagon ![](./etc/container/pentagon_3.png) heptagon ![](./etc/container/heptagon_3.png) |  |
-| SDD/HDD | multibin | batteries |
-| cutlery | cable organizer | sliding bin |
+| circle ![](./etc/container/circle_5.png) ellipse ![](./etc/container/oval_8_4.png) | pentagon ![](./etc/container/pentagon_3.png) heptagon ![](./etc/container/heptagon_3.png) | SanDisk-SDSSDE30 ![](./etc/container/sandisk_SDSSDE30.png) Toshiba-DTB420 ![](./etc/container/toshiba_DTB420.png) |
+| batteries | cutlery | multibin |
 | vernier calliper | cable organizer | sliding bin |
 
 
@@ -68,10 +67,9 @@ If I am doing 3d modeling, I do not want to write code.
 
 | | | |
 | - | - | - |	
-| spacer 5x2x3 | lid 3x4 | lid stackable 7x3 |
+| spacer | lid | lid stackable |
 | ![](./etc/misc/spacer_5x2x3.png) | ![](./etc/misc/lid_3x4.png) | ![](./etc/misc/lid_stack_7x3.png) |
 | cable canal | phone holder/charger | cleat |
-| gridfinity ruler | TBD | TBD |
 
 ---
 
